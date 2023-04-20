@@ -6,6 +6,8 @@ export default {
     extend: {},
     fontFamily: {
       sans: ["Inter", "sans-serif"],
+      serif: ["Merriweather", "serif"],
+      mono: ["Roboto Mono", "monospace"],
     },
   },
   plugins: [],
