@@ -1,8 +1,10 @@
 import { type NextPage } from "next";
 import Head from "next/head";
 import { SignInButton, SignOutButton, useUser } from "@clerk/nextjs";
+import Image from "next/image";
 
 import { api } from "~/utils/api";
+import { detectContentType } from "next/dist/server/image-optimizer";
 
 const Home: NextPage = () => {
   const user = useUser();
@@ -30,13 +32,37 @@ const Home: NextPage = () => {
               <div className="max-w-md">
                 <h1 className="mb-5 text-5xl font-bold">Brew!</h1>
                 {data?.map((recipe) => (
-                  <div key={recipe.id}>
-                    <h2 className="text-center text-3xl font-bold text-primary">
-                      {recipe.title}
-                    </h2>
-                    <pre className="whitespace-pre-wrap rounded-lg bg-base-100 p-1 text-left text-neutral">
-                      {JSON.stringify(recipe.content, null, 2)}
-                    </pre>
+                  <div
+                    key={recipe.id}
+                    className="card w-96 bg-neutral-focus shadow-xl"
+                  >
+                    <figure>
+                      <Image
+                        src={
+                          recipe.image
+                            ? recipe.image
+                            : "/images/lutz-wernitz-pcW5bR7gSJ4-unsplash.jpg"
+                        }
+                        width={500}
+                        height={500}
+                        alt={`${recipe.title} ${recipe.description}`}
+                      />
+                    </figure>
+                    <div className="card-body">
+                      <h2 className="card-title">
+                        {recipe.title}
+                        <div className="badge-secondary badge">NEW</div>
+                      </h2>
+                      <p>{recipe.description}</p>
+                      <div className="card-actions justify-end">
+                        <div className="badge-outline badge text-info">
+                          {recipe.content.beerjson.recipes[0].style.name.toUpperCase()}
+                        </div>
+                        <div className="badge-outline badge text-success">
+                          {recipe.content.beerjson.recipes[0].type.toUpperCase()}
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 ))}
               </div>
