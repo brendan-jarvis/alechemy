@@ -3,6 +3,7 @@ import Head from "next/head";
 import { SignInButton, SignOutButton, useUser } from "@clerk/nextjs";
 
 import { api } from "~/utils/api";
+import Image from "next/image";
 
 const Home: NextPage = () => {
   const user = useUser();
@@ -16,22 +17,61 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#5E81AC] to-[#8FBCBB]">
-        <div>
-          {data?.map((recipe) => (
-            <div key={recipe.id}>
-              <h2 className="text-center text-3xl font-bold text-gray-900">
-                {recipe.title}
-              </h2>
-              <pre className="whitespace-pre-wrap rounded-lg bg-gray-200 p-4 text-black">
-                {JSON.stringify(recipe.content)}
-              </pre>
+        {user.isSignedIn ? (
+          <>
+            <SignOutButton className="rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700" />
+            <div className="hero bg-base-200 min-h-screen">
+              <div className="hero-content flex-col lg:flex-row">
+                <Image
+                  src="/images/claude-piche-EHbtjmz7hvw-unsplash.jpg"
+                  className="max-w-sm rounded-lg shadow-2xl"
+                  alt="Anchor Steam Brewery in San Francisco by Claude Piche Unsplash"
+                  width={4982}
+                  height={3321}
+                />
+                <div>
+                  <h1 className="text-5xl font-bold">Brew!</h1>
+                  {data?.map((recipe) => (
+                    <div key={recipe.id}>
+                      <h2 className="text-center text-3xl font-bold text-gray-900">
+                        {recipe.title}
+                      </h2>
+                      <pre className="whitespace-pre-wrap rounded-lg bg-gray-200 p-4 text-black">
+                        {JSON.stringify(recipe.content)}
+                      </pre>
+                    </div>
+                  ))}
+                </div>
+              </div>
             </div>
-          ))}
-        </div>
-
-        <div className="rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700">
-          {user.isSignedIn ? <SignOutButton /> : <SignInButton />}
-        </div>
+          </>
+        ) : (
+          <>
+            <SignInButton className="rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700" />
+            <div className="hero bg-base-200 min-h-screen">
+              <div className="hero-content flex-col lg:flex-row">
+                <Image
+                  src="/images/claude-piche-EHbtjmz7hvw-unsplash.jpg"
+                  className="max-w-sm rounded-lg shadow-2xl"
+                  alt="Anchor Steam Brewery in San Francisco by Claude Piche Unsplash"
+                  width={4982}
+                  height={3321}
+                />
+                <div>
+                  <h1 className="text-5xl font-bold">Brew!</h1>
+                  <p className="py-6">
+                    A homebrewing app that allows you to find and track your
+                    favourite brewing recipes!
+                    <br />
+                    Our handy brewing calculator will provide unit conversions,
+                    help you calculate your beer colour, bitterness, and alcohol
+                    content, among other things!
+                  </p>
+                </div>
+              </div>
+            </div>
+          </>
+        )}
       </main>
     </>
   );
