@@ -5,7 +5,7 @@ export const Nav = () => {
   const { user } = useUser();
 
   return (
-    <div className="navbar bg-base-100">
+    <div className="navbar bg-neutral text-neutral-content">
       <div className="flex-1">
         <Link href="/" className="btn-ghost btn text-xl normal-case">
           Brew!
@@ -20,7 +20,7 @@ export const Nav = () => {
             <a>
               <div className="avatar">
                 <div className="w-10 rounded-full">
-                  <img src={user.profileImageUrl} alt="Profile image" />
+                  <img src={user?.profileImageUrl} alt="Profile image" />
                 </div>
               </div>
               <svg
@@ -33,11 +33,11 @@ export const Nav = () => {
                 <path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z" />
               </svg>
             </a>
-            <ul className="bg-base-100 p-2">
-              <li>
-                <a>Submenu 1</a>
+            <ul className="bg-accent p-2">
+              <li className="hover:bg-secondary">
+                <Link href="/profile/recipes">My Recipes</Link>
               </li>
-              <li>
+              <li className="hover:bg-secondary">
                 <a>Submenu 2</a>
               </li>
             </ul>
