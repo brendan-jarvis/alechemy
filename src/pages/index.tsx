@@ -1,10 +1,11 @@
 import { type NextPage } from "next";
 import Head from "next/head";
-import { SignInButton, SignOutButton, useUser } from "@clerk/nextjs";
+import { SignInButton, useUser } from "@clerk/nextjs";
 import Image from "next/image";
+import { Nav } from "~/components/Nav";
+import { Footer } from "~/components/Footer";
 
 import { api } from "~/utils/api";
-import { detectContentType } from "next/dist/server/image-optimizer";
 
 const Home: NextPage = () => {
   const user = useUser();
@@ -20,7 +21,7 @@ const Home: NextPage = () => {
 
       {user.isSignedIn ? (
         <>
-          <SignOutButton className="btn-secondary btn" />
+          <Nav />
           <div
             className="hero min-h-screen"
             style={{
@@ -68,6 +69,7 @@ const Home: NextPage = () => {
               </div>
             </div>
           </div>
+          <Footer />
         </>
       ) : (
         <div
