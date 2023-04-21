@@ -9,7 +9,15 @@ import { api } from "~/utils/api";
 
 const Home: NextPage = () => {
   const user = useUser();
-  const { data } = api.recipes.getAll.useQuery();
+  const { data, isLoading } = api.recipes.getAll.useQuery();
+
+  if (isLoading)
+    return <div className="bg-blue-100 p-4 text-blue-500">Loading...</div>;
+
+  if (!data)
+    return (
+      <div className="bg-red-100 p-4 text-red-500">Something went wrong!</div>
+    );
 
   return (
     <>
@@ -31,7 +39,7 @@ const Home: NextPage = () => {
             <div className="hero-overlay bg-opacity-60"></div>
             <div className="hero-content text-center text-neutral-content">
               <div className="max-w-md">
-                <h1 className="mb-5 text-5xl font-bold">Brew!</h1>
+                <h1 className="mb-5 text-5xl font-bold">Latest recipes</h1>
                 {data?.map((recipe) => (
                   <div
                     key={recipe.id}
