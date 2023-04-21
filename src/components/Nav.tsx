@@ -1,7 +1,9 @@
-import { SignOutButton } from "@clerk/nextjs";
+import { SignOutButton, useUser } from "@clerk/nextjs";
 import Link from "next/link";
 
 export const Nav = () => {
+  const { user } = useUser();
+
   return (
     <div className="navbar bg-base-100">
       <div className="flex-1">
@@ -16,7 +18,11 @@ export const Nav = () => {
           </li>
           <li tabIndex={0}>
             <a>
-              Parent
+              <div className="avatar">
+                <div className="w-10 rounded-full">
+                  <img src={user.profileImageUrl} alt="Profile image" />
+                </div>
+              </div>
               <svg
                 className="fill-current"
                 xmlns="http://www.w3.org/2000/svg"
