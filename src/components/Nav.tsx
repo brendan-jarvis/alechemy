@@ -52,7 +52,7 @@ export const Nav = () => {
               </li>
             </ul>
           </li>
-          <li className="rounded bg-secondary px-4 py-2 font-bold text-base-100 hover:bg-warning">
+          <li className="btn-secondary rounded font-bold text-base-100 hover:btn-warning">
             <SignOutButton />
           </li>
         </ul>
