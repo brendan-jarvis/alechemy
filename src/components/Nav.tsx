@@ -24,7 +24,11 @@ export const Nav = () => {
                   <Image
                     width={40}
                     height={40}
-                    src={user?.profileImageUrl}
+                    src={
+                      user?.profileImageUrl
+                        ? user.profileImageUrl
+                        : "/profile.png"
+                    }
                     alt="Profile image"
                   />
                 </div>
