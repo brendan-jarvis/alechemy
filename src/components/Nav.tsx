@@ -1,4 +1,5 @@
 import { SignOutButton, useUser } from "@clerk/nextjs";
+import Image from "next/image";
 import Link from "next/link";
 
 export const Nav = () => {
@@ -20,7 +21,12 @@ export const Nav = () => {
             <a>
               <div className="avatar">
                 <div className="w-10 rounded-full">
-                  <img src={user?.profileImageUrl} alt="Profile image" />
+                  <Image
+                    width={40}
+                    height={40}
+                    src={user?.profileImageUrl}
+                    alt="Profile image"
+                  />
                 </div>
               </div>
               <svg
@@ -42,8 +48,8 @@ export const Nav = () => {
               </li>
             </ul>
           </li>
-          <li>
-            <SignOutButton className="rounded bg-secondary px-4 py-2 font-bold text-base-100 hover:bg-warning" />
+          <li className="rounded bg-secondary px-4 py-2 font-bold text-base-100 hover:bg-warning">
+            <SignOutButton />
           </li>
         </ul>
       </div>
