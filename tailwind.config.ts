@@ -6,7 +6,7 @@ export default {
   theme: {
     extend: {},
     fontFamily: {
-      sans: ["Inter", "sans-serif"],
+      sans: ["Lato", "sans-serif"],
       serif: ["Merriweather", "serif"],
       mono: ["Roboto Mono", "monospace"],
     },
