@@ -96,7 +96,6 @@ const Home: NextPage = () => {
           <div className="hero-content text-center text-neutral-content">
             <div className="max-w-md">
               <h1 className="mb-5 text-5xl font-bold">Brew!</h1>
-              {/* btn-primary btn text-xl text-neutral  */}
               <div className="btn-primary btn rounded bg-primary font-bold text-neutral hover:btn-success">
                 <SignInButton />
               </div>
