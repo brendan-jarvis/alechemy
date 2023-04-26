@@ -9,7 +9,7 @@ export const Nav = () => {
     <div className="navbar bg-neutral text-neutral-content">
       <div className="flex-1">
         <Link href="/" className="btn-ghost btn text-xl normal-case">
-          Brew!
+          Alechemy!
         </Link>
       </div>
       <div className="flex-none">
