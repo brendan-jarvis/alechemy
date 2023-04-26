@@ -34,7 +34,7 @@ export const RecipeView = (props: RecipeWithUser) => {
           {recipe.title}
           <div className="badge-secondary badge">NEW</div>
         </h2>
-        <div className="flex justify-evenly gap-4">
+        <div className="card-title">
           <Image
             className="h-14 w-14 rounded-full"
             src={author.profileImageUrl}
