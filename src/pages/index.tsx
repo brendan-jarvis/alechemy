@@ -67,10 +67,10 @@ const Home: NextPage = () => {
                   <p>{recipe.description}</p>
                   <div className="card-actions justify-end">
                     <div className="badge-outline badge text-sm text-info">
-                      {recipe.content.beerjson.recipes[0].style.name.toUpperCase()}
+                      {recipe.content?.beerjson.recipes[0].style.name.toUpperCase()}
                     </div>
                     <div className="badge-outline badge text-sm text-success">
-                      {recipe.content.beerjson.recipes[0].type.toUpperCase()}
+                      {recipe.content?.beerjson.recipes[0].type.toUpperCase()}
                     </div>
                   </div>
                 </div>
