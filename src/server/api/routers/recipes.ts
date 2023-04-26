@@ -34,14 +34,14 @@ const addUserDataToRecipes = async (recipes: Recipe[]) => {
     }
 
     if (!author.username) {
-      author.username = "Brewer";
+      author.username = "Alechemist";
     }
 
     return {
       recipe,
       author: {
         ...author,
-        username: author.username ?? "Unknown Brewer",
+        username: author.username ?? "Unknown Alechemist",
       },
     };
   });
