@@ -13,11 +13,13 @@ const Home: NextPage = () => {
   const { data, isLoading } = api.recipes.getAll.useQuery();
 
   if (isLoading)
-    return <div className="bg-blue-100 p-4 text-blue-500">Loading...</div>;
+    return (
+      <div className="bg-blue-100 p-4 text-secondary-focus">Loading...</div>
+    );
 
   if (!data)
     return (
-      <div className="bg-red-100 p-4 text-red-500">Something went wrong!</div>
+      <div className="bg-red-100 p-4 text-error">Something went wrong!</div>
     );
 
   return (
