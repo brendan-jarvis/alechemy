@@ -34,8 +34,21 @@ export const RecipeView = (props: RecipeWithUser) => {
           {recipe.title}
           <div className="badge-secondary badge">NEW</div>
         </h2>
-        <p className="text-sm italic">By {author?.username}</p>
-        <p>{recipe.description}</p>
+        <div className="flex justify-evenly gap-4">
+          <Image
+            className="h-14 w-14 rounded-full"
+            src={author.profileImageUrl}
+            alt="Profile Image"
+            width={50}
+            height={50}
+          />
+          <p className="text-sm">
+            Added by <span className="italic">{author?.username}</span>
+          </p>
+        </div>
+        <div>
+          <p>{recipe.description}</p>
+        </div>
         <div className="card-actions justify-end">
           <div className="badge-outline badge text-sm text-info">
             {beerjson?.recipes[0]?.style.name.toUpperCase()}
