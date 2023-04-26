@@ -32,9 +32,11 @@ const addUserDataToRecipes = async (recipes: Recipe[]) => {
         message: `Author for recipe not found. RECIPE ID: ${recipe.id}, USER ID: ${recipe.authorId}`,
       });
     }
+
     if (!author.username) {
       author.username = "Brew! User";
     }
+
     return {
       recipe,
       author: {

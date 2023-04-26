@@ -1,51 +1,13 @@
 import { type NextPage } from "next";
 import Head from "next/head";
 import { SignInButton, useUser } from "@clerk/nextjs";
-import Image from "next/image";
+
 import { Nav } from "~/components/Nav";
 import { Footer } from "~/components/Footer";
 import { AddRecipe } from "~/components/AddRecipe";
+import { RecipeView } from "~/components/RecipeView";
 
 import { api } from "~/utils/api";
-
-const RecipeView = ({ recipe, author }) => {
-  return (
-    <div
-      key={recipe.id}
-      className="card bg-neutral text-base-200 shadow-xl hover:bg-neutral-focus"
-    >
-      <figure>
-        <Image
-          src={
-            recipe.image
-              ? recipe.image
-              : "/images/jon-parry-C8eSYwQkwHw-unsplash.jpg"
-          }
-          className={recipe.image ? "" : "opacity-50"}
-          width={500}
-          height={500}
-          alt={`${recipe.title} ${recipe.description}`}
-        />
-      </figure>
-      <div className="card-body">
-        <h2 className="card-title">
-          {recipe.title}
-          <div className="badge-secondary badge">NEW</div>
-        </h2>
-        <p className="text-sm italic">By {author?.username}</p>
-        <p>{recipe.description}</p>
-        <div className="card-actions justify-end">
-          <div className="badge-outline badge text-sm text-info">
-            {recipe.content?.beerjson.recipes[0].style.name.toUpperCase()}
-          </div>
-          <div className="badge-outline badge text-sm text-success">
-            {recipe.content?.beerjson.recipes[0].type.toUpperCase()}
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-};
 
 const Home: NextPage = () => {
   const user = useUser();
@@ -79,8 +41,8 @@ const Home: NextPage = () => {
 
             <AddRecipe />
 
-            {[...data, ...data]?.map(({ recipe, author }) => (
-              <RecipeView key={recipe.id} recipe={recipe} author={author} />
+            {data?.map((props) => (
+              <RecipeView key={props.recipe.id} {...props} />
             ))}
           </div>
           <Footer />
