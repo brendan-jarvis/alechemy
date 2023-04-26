@@ -1,15 +1,12 @@
-import type { BeerJSON } from "~/utils/types";
+// import type { BeerJSON } from "~/utils/types";
 import Image from "next/image";
-import { RouterOutputs } from "~/utils/api";
+import Link from "next/link";
+import type { RouterOutputs } from "~/utils/api";
 
 type RecipeWithUser = RouterOutputs["recipes"]["getAll"][number];
 
 export const RecipeView = (props: RecipeWithUser) => {
   const { recipe, author } = props;
-
-  const beerjson: BeerJSON = recipe.content?.beerjson;
-
-  if (!beerjson) return null;
 
   return (
     <div
@@ -42,19 +39,28 @@ export const RecipeView = (props: RecipeWithUser) => {
             width={50}
             height={50}
           />
-          <p className="text-sm">
-            Added by <span className="italic">{author?.username}</span>
-          </p>
+          {author.username && (
+            <p className="text-sm">
+              Added by{" "}
+              {author.username !== "Alechemist" ? (
+                <Link href={`/${author.username}`}>@{author.username}</Link>
+              ) : (
+                author.username
+              )}
+            </p>
+          )}
         </div>
         <div>
           <p>{recipe.description}</p>
         </div>
         <div className="card-actions justify-end">
           <div className="badge-outline badge text-sm text-info">
-            {beerjson?.recipes[0]?.style.name.toUpperCase()}
+            {/* {recipe.content?.beerjson.recipes[0]?.style.name.toUpperCase()} */}
+            Style
           </div>
           <div className="badge-outline badge text-sm text-success">
-            {beerjson?.recipes[0]?.type.toUpperCase()}
+            {/* {recipe.content?.beerjson.recipes[0]?.type.toUpperCase()} */}
+            Type
           </div>
         </div>
       </div>
