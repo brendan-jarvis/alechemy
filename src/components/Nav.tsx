@@ -1,4 +1,4 @@
-import { SignOutButton, useUser, useClerk } from "@clerk/nextjs";
+import { useUser, useClerk } from "@clerk/nextjs";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -17,7 +17,7 @@ export const Nav = () => {
       <div className="flex-none">
         <ul className="menu menu-horizontal px-1">
           <li>
-            <Link href="/recipe/add">Add recipe</Link>
+            <Link href="/recipes">Recipes</Link>
           </li>
           <li tabIndex={0}>
             <a>
@@ -60,8 +60,10 @@ export const Nav = () => {
               </li>
             </ul>
           </li>
-          <li className="btn-secondary rounded font-bold text-base-100 hover:btn-warning">
-            <SignOutButton />
+          <li>
+            <button className="btn-secondary rounded font-bold text-base-100 hover:btn-warning">
+              <Link href="/recipe/add">Add recipe</Link>
+            </button>
           </li>
         </ul>
       </div>
