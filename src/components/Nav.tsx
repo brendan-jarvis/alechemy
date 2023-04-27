@@ -15,7 +15,7 @@ export const Nav = () => {
       <div className="flex-none">
         <ul className="menu menu-horizontal px-1">
           <li>
-            <a>Item 1</a>
+            <Link href="/recipe/add">Add recipe</Link>
           </li>
           <li tabIndex={0}>
             <a>
