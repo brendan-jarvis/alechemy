@@ -11,7 +11,7 @@ export const RecipeView = (props: RecipeWithUser) => {
   return (
     <div
       key={recipe.id}
-      className="card bg-neutral text-base-200 shadow-xl hover:bg-neutral-focus"
+      className="card max-w-md bg-neutral text-base-200 shadow-xl hover:bg-neutral-focus"
     >
       <figure>
         <Image
