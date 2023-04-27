@@ -1,28 +1,12 @@
 import { type NextPage } from "next";
 import Head from "next/head";
-import { SignInButton, useUser } from "@clerk/nextjs";
+import Link from "next/link";
 
 import { Nav } from "~/components/Nav";
 import { Footer } from "~/components/Footer";
-import { AddRecipe } from "~/components/AddRecipe";
-import { RecipeView } from "~/components/RecipeView";
-
-import { api } from "~/utils/api";
+import { SignedOut, SignInButton } from "@clerk/nextjs";
 
 const Home: NextPage = () => {
-  const user = useUser();
-  const { data, isLoading } = api.recipes.getAll.useQuery();
-
-  if (isLoading)
-    return (
-      <div className="bg-blue-100 p-4 text-secondary-focus">Loading...</div>
-    );
-
-  if (!data)
-    return (
-      <div className="bg-red-100 p-4 text-error">Something went wrong!</div>
-    );
-
   return (
     <>
       <Head>
@@ -31,40 +15,39 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      {user.isSignedIn ? (
-        <>
-          <Nav />
+      <Nav />
+      <div
+        className="hero min-h-screen"
+        style={{
+          backgroundImage: `url("/images/claude-piche-EHbtjmz7hvw-unsplash.jpg")`,
+        }}
+      >
+        <div className="hero-overlay bg-opacity-60"></div>
+        <div className="hero-content text-center text-neutral-content">
           <div className="max-w-md">
-            <h1 className="m-4 text-center font-serif text-5xl font-bold text-neutral">
-              Latest recipes
-            </h1>
+            <h1 className="mb-5 text-5xl font-bold">Alechemy!</h1>
+            <p className="mb-5 ">
+              Alechemy is a website that provides brewing recipes for beer
+              enthusiasts. The website offers a wide range of recipes for
+              different types of beer, including lagers, ales, stouts, and more.
+              The website also provides detailed instructions on how to brew
+              beer at home, as well as tips and tricks for making the perfect
+              brew. Whether you&apos;re a seasoned brewer or just starting out,
+              Alchemy has everything you need to create the perfect beer.
+            </p>
 
-            <AddRecipe />
-
-            {data?.map((props) => (
-              <RecipeView key={props.recipe.id} {...props} />
-            ))}
-          </div>
-          <Footer />
-        </>
-      ) : (
-        <div
-          className="hero min-h-screen"
-          style={{
-            backgroundImage: `url("/images/claude-piche-EHbtjmz7hvw-unsplash.jpg")`,
-          }}
-        >
-          <div className="hero-overlay bg-opacity-60"></div>
-          <div className="hero-content text-center text-neutral-content">
-            <div className="max-w-md">
-              <h1 className="mb-5 text-5xl font-bold">Brew!</h1>
-              <div className="btn-primary btn rounded bg-primary font-bold text-neutral hover:btn-success">
-                <SignInButton />
-              </div>
-            </div>
+            <Link href="/recipes" className="btn-primary btn-wide btn">
+              View recipes
+            </Link>
+            <SignedOut>
+              <SignInButton>
+                <button className="btn-secondary btn-wide btn">Sign in</button>
+              </SignInButton>
+            </SignedOut>
           </div>
         </div>
-      )}
+      </div>
+      <Footer />
     </>
   );
 };
