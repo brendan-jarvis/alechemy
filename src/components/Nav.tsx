@@ -1,9 +1,11 @@
-import { SignOutButton, useUser } from "@clerk/nextjs";
+import { SignOutButton, useUser, useClerk } from "@clerk/nextjs";
 import Image from "next/image";
 import Link from "next/link";
 
 export const Nav = () => {
   const { user } = useUser();
+
+  const { signOut } = useClerk();
 
   return (
     <div className="navbar bg-neutral text-neutral-content">
@@ -48,7 +50,13 @@ export const Nav = () => {
                 <Link href="/profile/recipes">My Recipes</Link>
               </li>
               <li className="hover:bg-secondary">
-                <a>Submenu 2</a>
+                <p
+                  onClick={() => {
+                    void signOut();
+                  }}
+                >
+                  Sign out
+                </p>
               </li>
             </ul>
           </li>
