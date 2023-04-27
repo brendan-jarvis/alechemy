@@ -2,16 +2,16 @@ import { type NextPage } from "next";
 import { Nav } from "~/components/Nav";
 import { Footer } from "~/components/Footer";
 
-const userProfileRecipes: NextPage = () => {
+const UserProfileRecipes: NextPage = () => {
   return (
     <>
       <Nav />
       <div>
-        <p>This is the profile</p>
+        <p>This is the user profile recipes component.</p>
       </div>
       <Footer />
     </>
   );
 };
 
-export default userProfileRecipes;
+export default UserProfileRecipes;
