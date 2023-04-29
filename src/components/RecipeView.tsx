@@ -1,10 +1,12 @@
-// import type { BeerJSON } from "~/utils/types";
 import Image from "next/image";
 import Link from "next/link";
+
 import type { RouterOutputs } from "~/utils/api";
 import type { BeerJSON } from "~/utils/types";
+
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
+
 dayjs.extend(relativeTime);
 
 type RecipeWithUser = RouterOutputs["recipes"]["getAll"][number];
