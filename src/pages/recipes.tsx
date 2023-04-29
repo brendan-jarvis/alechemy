@@ -19,7 +19,6 @@ const Recipes: NextPage = () => {
     return (
       <>
         <Nav />
-        <Header />
         <LoadingSpinner size={60} />
         <Footer />
       </>
