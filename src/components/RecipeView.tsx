@@ -58,7 +58,7 @@ export const RecipeView = (props: RecipeWithUser) => {
           <Image
             className="h-14 w-14 rounded-full"
             src={author.profileImageUrl}
-            alt="Profile Image"
+            alt={`${author.username}'s profile picture`}
             width={50}
             height={50}
           />
