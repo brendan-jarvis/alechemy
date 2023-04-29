@@ -15,7 +15,7 @@ const Recipes: NextPage = () => {
     </h1>
   );
 
-  if (isLoading || true)
+  if (isLoading)
     return (
       <>
         <Nav />
