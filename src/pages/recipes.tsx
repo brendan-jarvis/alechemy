@@ -4,6 +4,7 @@ import { Footer } from "~/components/Footer";
 import { RecipeView } from "~/components/RecipeView";
 
 import { api } from "~/utils/api";
+import { LoadingSpinner } from "~/components/Loading";
 
 const Recipes: NextPage = () => {
   const { data, isLoading } = api.recipes.getAll.useQuery();
@@ -14,12 +15,12 @@ const Recipes: NextPage = () => {
     </h1>
   );
 
-  if (isLoading)
+  if (isLoading || true)
     return (
       <>
         <Nav />
         <Header />
-        <div className="bg-blue-100 p-4 text-secondary-focus">Loading...</div>
+        <LoadingSpinner size={60} />
         <Footer />
       </>
     );
