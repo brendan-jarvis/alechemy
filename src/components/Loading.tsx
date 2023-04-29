@@ -30,7 +30,7 @@ export const LoadingSpinner = (props: { size?: number }) => {
 export const LoadingPage = () => {
   return (
     <div>
-      <LoadingSpinner size={600} />
+      <LoadingSpinner />
     </div>
   );
 };
