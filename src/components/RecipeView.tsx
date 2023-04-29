@@ -2,11 +2,29 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { RouterOutputs } from "~/utils/api";
+import type { BeerJSON } from "~/utils/types";
 
 type RecipeWithUser = RouterOutputs["recipes"]["getAll"][number];
 
 export const RecipeView = (props: RecipeWithUser) => {
   const { recipe, author } = props;
+  let beerJSON = {} as BeerJSON;
+
+  if (
+    typeof recipe.content === "object" &&
+    recipe.content !== null &&
+    "beerjson" in recipe.content
+  ) {
+    beerJSON = JSON.parse(JSON.stringify(recipe.content.beerjson)) as BeerJSON;
+  } else {
+    return (
+      <div className="bg-red-100 p-4 text-error">
+        Recipe {recipe.id} has invalid content: {JSON.stringify(recipe.content)}
+        . Please contact the user who added this recipe ({author.username}) or
+        an administrator.
+      </div>
+    );
+  }
 
   return (
     <div
@@ -53,16 +71,16 @@ export const RecipeView = (props: RecipeWithUser) => {
         <div>
           <p>{recipe.description}</p>
         </div>
-        <div className="card-actions justify-end">
-          <div className="badge-outline badge text-sm text-info">
-            {/* {recipe.content?.beerjson.recipes[0]?.style.name.toUpperCase()} */}
-            Style
+        {beerJSON.recipes && beerJSON.recipes[0] && (
+          <div className="card-actions justify-end">
+            <div className="badge-outline badge text-sm text-info">
+              {beerJSON.recipes[0].style?.name.toUpperCase()}
+            </div>
+            <div className="badge-outline badge text-sm text-success">
+              {beerJSON.recipes[0].type.toUpperCase()}
+            </div>
           </div>
-          <div className="badge-outline badge text-sm text-success">
-            {/* {recipe.content?.beerjson.recipes[0]?.type.toUpperCase()} */}
-            Type
-          </div>
-        </div>
+        )}
       </div>
     </div>
   );
